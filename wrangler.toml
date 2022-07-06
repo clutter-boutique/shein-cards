@@ -1,0 +1,14 @@
+name = "shein-cards"
+type = "webpack"
+main = "./index.js"
+route = ''
+account_id = "93ff523463821408b1e16cb2a064f3c7"
+zone_id = '35e9c79fb7df1512a0b97824c64a9610'
+usage_model = 'unbound'
+compatibility_flags = []
+workers_dev = true
+compatibility_date = "2022-07-03"
+
+[[r2_buckets]]
+binding = 'IMAGES' # <~ valid JavaScript variable name
+bucket_name = 'shein-data'
