@@ -12,3 +12,4 @@ compatibility_date = "2022-07-03"
 [[r2_buckets]]
 binding = 'IMAGES' # <~ valid JavaScript variable name
 bucket_name = 'shein-data'
+

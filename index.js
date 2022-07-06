@@ -1,11 +1,20 @@
-import SheinProduct from '../SheinProduct.js';
-addEventListener('fetch', (event) => { return event.respondWith(handleRequest(event.request)); });
+import SheinProduct from './lib/SheinProduct.js';
+addEventListener('fetch',
+    async(event) => {
+        console.log("Event berfore", event, event.request())
+        return event.respondWith(await handleRequest(event.request));
+    });
 
 
-async function handleRequest(request) {
-    if (request.url.endsWith('png')) return serveImage(request)
-    if (request.url.pathname.startsWith('/trello')) return serveTrello(request)
-    if (request.url.pathname.startsWith('/productInfo')) return getProductInfo(request)
+async function handleRequest(requestURL) {
+    console.log('replaceAll', requestURL)
+    requestURL = requestURL.replaceAll('%3A', ":").replaceAll('%2F', '/')
+    console.log(requestURL)
+    let url = new URL(requestURL)
+    console.log("handling Request", url)
+    if (requestURL.endsWith('png')) return serveImage(request)
+    if (url.pathname.startsWith('/trello')) return serveTrello(request)
+    if (url.pathname.startsWith('/productInfo')) return getProductInfo(request)
     return new Response(`URL ${request.url} not found.`, { status: 404 });
 }
 
