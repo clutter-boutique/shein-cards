@@ -1,4 +1,6 @@
 import SheinProduct from './lib/SheinProduct.js';
+
+
 addEventListener('fetch',
     async(event) => {
         console.log("Event berfore", event, event.request())
@@ -37,16 +39,4 @@ async function serveImage(request) {
     object.writeHttpMetadata(headers);
     headers.set('etag', object.httpEtag);
     return new Response(object.body, {});
-}
-
-function assembleData(raw) {
-    let data = JSON.parse(fixProductJson(raw))
-    return {
-        title: data.metaInfo.meta_title.replace('| SHEIN USA', ''),
-        price: data.detail.retailPrice.usdAmount,
-        sizes: getSizeInfo(data),
-        details: getProductDetails(data),
-        images: getImages(data)
-    }
-
 }
